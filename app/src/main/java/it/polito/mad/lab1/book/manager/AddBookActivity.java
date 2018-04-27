@@ -15,10 +15,16 @@ import it.polito.mad.lab1.R;
 public class AddBookActivity extends AppCompatActivity
         implements View.OnClickListener {
 
-    // Variables for the search input field, and results TextViews.
+    // Variable for the search input field
     private EditText mIsbnInput;
+
+    // Variables for results TextViews.
     private TextView mTitleText;
     private TextView mAuthorText;
+    private TextView mbookISBN;
+    private TextView mbookPublisher;
+    private TextView mbookEditionYear;
+    private TextView mextraDeails;
 
 
 
@@ -31,14 +37,19 @@ public class AddBookActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
+        // take the reference to input field for ISBN
         mIsbnInput = (EditText)findViewById(R.id.isbn_input);
+
+        // take the referrence for TextViews containing the info about the book
         mTitleText = (TextView)findViewById(R.id.titleText);
         mAuthorText = (TextView)findViewById(R.id.authorText);
+        mAuthorText = (TextView)findViewById(R.id.isbnText);
+        mAuthorText = (TextView)findViewById(R.id.publisherText);
+        mAuthorText = (TextView)findViewById(R.id.editionYearText);
+        mAuthorText = (TextView)findViewById(R.id.extraDetailsText);
 
-
+        // take the reference for the search Button
         findViewById(R.id.searchBookButton).setOnClickListener(this);
-
-
 
     }
 
@@ -77,7 +88,7 @@ public class AddBookActivity extends AppCompatActivity
         if (networkInfo != null && networkInfo.isConnected() && queryString.length()!=0) {
 //            new FetchBook(mTitleText, mAuthorText, mBookInput).execute(queryString);
 
-
+            Book myBook = new Book();
 
             new FetchBookByIsbn(mTitleText, mAuthorText, mIsbnInput).execute(queryString);
 

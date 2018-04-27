@@ -24,10 +24,9 @@ public class FetchBookByIsbn extends AsyncTask<String,Void,String> {
 
     // Variables for the search input field, and results TextViews
     private EditText mBookInputIsbn;
-    private TextView isbn_text;
-
     private TextView mTitleText;
     private TextView mAuthorText;
+    private Book localBook = new Book();
 
     // Class name for Log tag
     private static final String LOG_TAG = FetchBookByIsbn.class.getSimpleName();
@@ -40,7 +39,7 @@ public class FetchBookByIsbn extends AsyncTask<String,Void,String> {
         this.mAuthorText = authorText;
         this.mBookInputIsbn = isbnInput;
 
-        this.isbn_text = isbn_text;
+        this.localBook = localBook;
     }
 
 
@@ -71,7 +70,7 @@ public class FetchBookByIsbn extends AsyncTask<String,Void,String> {
             // example: https://www.googleapis.com/books/v1/volumes?q=isbn:9788850334216
 
             final String QUERY_PARAM = "q"; // Parameter for the search string.
-            final String ISBN_TAG = "isbn:";
+            final String ISBN_TAG = "isbn:"; // search by isbn
             final String MAX_RESULTS = "maxResults"; // Parameter that limits search results.
             final String PRINT_TYPE = "printType"; // Parameter to filter by print type.
 
@@ -82,7 +81,7 @@ public class FetchBookByIsbn extends AsyncTask<String,Void,String> {
                     .appendQueryParameter(PRINT_TYPE, "books")
                     .build();
 
-            System.out.println("The URL is: --------------------------------\n\n\n" +
+            System.out.println("\n The URL is: --------------------------------\n\n\n" +
                     builtURI.toString());
 
             URL requestURL = new URL(builtURI.toString());
@@ -161,8 +160,11 @@ public class FetchBookByIsbn extends AsyncTask<String,Void,String> {
             int i = 0;
             String title = null;
             String authors = null;
+            String isbn = null;
+            String publisher = null;
+            String editionYear = null;
+            String extraDetails = null;
 
-            String myISBN = null;
 
             // Look for results in the items array, exiting when both the title and author
             // are found or when all items have been checked.
@@ -177,10 +179,11 @@ public class FetchBookByIsbn extends AsyncTask<String,Void,String> {
                     title = volumeInfo.getString("title");
                     authors = volumeInfo.getString("authors");
 
+                    isbn = volumeInfo.getString("industryIdentifiers");
+                    publisher = volumeInfo.getString("publisher");
+                    editionYear = volumeInfo.getString("publishedDate");
+                    extraDetails = "your extraDetails";
 
-                    myISBN = volumeInfo.getString("industryIdentifiers");
-
-                    Log.i("Industry identif: + \n", myISBN);
 
                 } catch (Exception e){
                     e.printStackTrace();
@@ -195,6 +198,17 @@ public class FetchBookByIsbn extends AsyncTask<String,Void,String> {
                 mTitleText.setText(title);
                 mAuthorText.setText(authors);
                 mBookInputIsbn.setText("");
+
+                // add data to book object
+                localBook.setBookTitle(title);
+                localBook.setBookAuthor(authors);
+                localBook.setBookISBN(isbn);
+                localBook.setBookPublisher(publisher);
+                localBook.setBookEditionYear(editionYear);
+                localBook.setExtraDeails(extraDetails);
+
+                System.out.println("\n\n\n" + localBook + "\n\n\n" );
+
             } else {
                 // If none are found, update the UI to show failed results.
                 mTitleText.setText(R.string.no_results);

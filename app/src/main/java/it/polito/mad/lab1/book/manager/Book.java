@@ -16,7 +16,10 @@ public class Book {
     private String bookPublisher;
     private String bookEditionYear;
 
-    private String extraDeails = null;
+    private String extraDetails = null;
+
+    public Book() {
+    }
 
     // constructor without extra details
     public Book(String bookTitle, String bookAuthor, String bookISBN, String bookPublisher, String bookEditionYear) {
@@ -70,22 +73,22 @@ public class Book {
 
 
     public String getExtraDeails() {
-        return extraDeails;
+        return extraDetails;
     }
 
     public void setExtraDeails(String extraDeails) {
-        this.extraDeails = extraDeails;
+        this.extraDetails = extraDeails;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "bookTitle='" + bookTitle + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", bookISBN='" + bookISBN + '\'' +
-                ", bookPublisher='" + bookPublisher + '\'' +
-                ", bookEditionYear='" + bookEditionYear + '\'' +
-                ", extraDeails='" + extraDeails + '\'' +
+                "\n bookTitle='" + bookTitle + '\'' +
+                "\n bookAuthor='" + bookAuthor + '\'' +
+                "\n bookISBN='" + bookISBN + '\'' +
+                "\n bookPublisher='" + bookPublisher + '\'' +
+                "\n bookEditionYear='" + bookEditionYear + '\'' +
+                "\n extraDeails='" + extraDetails + '\'' +
                 '}';
     }
 }
