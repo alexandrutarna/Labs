@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <View android:id="@+id/marginTop"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+
+    <EditText
+        android:id="@+id/your_email"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/marginTop"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/your_email"
+        android:padding="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+    <EditText
+        android:id="@+id/your_pass"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/your_email"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/your_pass"
+        android:padding="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@+id/your_pass"
+        android:layout_alignStart="@id/your_pass"
+        android:layout_alignLeft="@id/your_pass"
+        android:padding="10dp"
+        android:text="@string/sign_in_button" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="@string/create_acc_button"
+        android:layout_alignEnd="@id/your_pass"
+        android:layout_alignRight="@id/your_pass"
+        android:padding="10dp"
+        android:layout_alignBottom="@+id/btnSignIn"/>
+
+
+    <TextView
+        android:id="@+id/tvSignInStatus"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/btnCreate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        />
+
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:padding="10dp"
+        android:layout_below="@+id/tvSignInStatus"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sign_out_button" />
+
+
+</RelativeLayout>
+
+
+
+
+
